@@ -1,0 +1,6 @@
+Creating an optimized production build...
+Failed to compile.
+
+Module not found: Error: Can't resolve '..ComponentsDashboardLayout' in 'd:\HIRE\frontend\src\Pages\JOB SEEKER PANEL'
+
+
