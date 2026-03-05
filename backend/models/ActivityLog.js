@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 
-const activityLogSchema = new mongoose.Schema({
-    user: { type: String, required: true },
+const ActivityLogSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    userName: { type: String },
     action: { type: String, required: true },
-    details: { type: String },
-    time: { type: String },
-    ip: { type: String },
-    type: { type: String } // login, update, delete, create
+    type: { type: String, enum: ['auth', 'job', 'application', 'admin', 'profile', 'security'], default: 'admin' },
+    ip: { type: String, default: '0.0.0.0' },
 }, { timestamps: true });
 
-module.exports = mongoose.model('ActivityLog', activityLogSchema);
+module.exports = mongoose.model('ActivityLog', ActivityLogSchema);

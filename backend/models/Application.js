@@ -1,17 +1,20 @@
 const mongoose = require('mongoose');
 
-const applicationSchema = new mongoose.Schema({
-    jobTitle: { type: String, required: true },
-    company: { type: String, required: true },
-    status: { type: String, default: 'Applied' }, // Applied, Reviewed, Interview, Offered, Rejected
-    appliedDate: { type: String },
-    applicantName: { type: String },
-    applicantEmail: { type: String },
-    applicantId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    jobId: { type: mongoose.Schema.Types.ObjectId, ref: 'Job' },
-    resume: { type: String },
-    coverLetter: { type: String },
-    score: { type: Number }
-}, { timestamps: true });
+const ApplicationSchema = new mongoose.Schema(
+    {
+        jobId: { type: mongoose.Schema.Types.ObjectId, ref: 'Job', required: true },
+        candidateId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+        resume: { type: String, required: true }, // Candidate's resume used for this app
+        status: {
+            type: String,
+            enum: ['Applied', 'Shortlisted', 'Rejected', 'Selected'],
+            default: 'Applied',
+        },
+        aiScore: { type: Number, default: 0 },
+        matchedSkills: { type: [String], default: [] },
+        missingSkills: { type: [String], default: [] },
+    },
+    { timestamps: true }
+);
 
-module.exports = mongoose.model('Application', applicationSchema);
+module.exports = mongoose.model('Application', ApplicationSchema);
