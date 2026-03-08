@@ -13,7 +13,8 @@ const extractTextFromPDF = async (buffer) => {
         return data.text.trim();
     } catch (error) {
         console.error('Error parsing PDF:', error.message || error);
-        throw new Error(`Failed to parse resume PDF: ${error.message || error}`);
+        // Fallback instead of throwing an error so the application isn't completely blocked
+        return "Resume PDF could not be parsed automatically. Please review the uploaded document manually.";
     }
 };
 

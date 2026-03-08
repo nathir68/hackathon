@@ -165,6 +165,7 @@ const Signup = () => {
                             )}
                         </div>
                     </form>
+
                     <div className="auth-divider">or sign up with</div>
                     <div className="social-buttons">
                         <button className="social-btn"><FcGoogle /> Google</button>

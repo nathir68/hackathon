@@ -88,11 +88,8 @@ const Login = () => {
                                 type="email"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
-                                placeholder={
-                                    role === 'admin' ? 'nathirvkp@gmail.com' :
-                                        role === 'seeker' ? 'gokulspt40@gmail.com' :
-                                            'nandhiniraja2408@gmail.com'
-                                }
+                                placeholder="Enter your email"
+                                autoComplete="off"
                                 required
                             />
                         </div>
@@ -104,11 +101,8 @@ const Login = () => {
                                     type={showPass ? 'text' : 'password'}
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
-                                    placeholder={
-                                        role === 'admin' ? 'natsah0608' :
-                                            role === 'seeker' ? 'gokul111' :
-                                                'nandhu123'
-                                    }
+                                    placeholder="Enter your password"
+                                    autoComplete="new-password"
                                     required
                                 />
                                 <button type="button" className="toggle-pass" onClick={() => setShowPass(!showPass)}>{showPass ? <HiOutlineEyeOff /> : <HiOutlineEye />}</button>
@@ -117,6 +111,7 @@ const Login = () => {
                         <div className="auth-options"><label><input type="checkbox" /> Remember me</label><Link to="/auth/forgot-password">Forgot Password?</Link></div>
                         <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%' }} disabled={loading}>{loading ? 'Signing in...' : 'Sign In'}</button>
                     </form>
+
                     <div className="auth-divider">or continue with</div>
                     <div className="social-buttons"><button type="button" className="social-btn" onClick={() => handleSocialLogin('Google')} disabled={loading}><FcGoogle /> Google</button><button type="button" className="social-btn" onClick={() => handleSocialLogin('LinkedIn')} disabled={loading}><FaLinkedinIn /> LinkedIn</button><button type="button" className="social-btn" onClick={() => handleSocialLogin('GitHub')} disabled={loading}><FaGithub /> GitHub</button></div>
                     <div className="auth-footer">Don't have an account? <Link to="/register">Sign Up</Link></div>

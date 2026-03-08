@@ -27,6 +27,20 @@ const Backup = () => {
         }
     };
 
+    const handleDownloadBackup = (backup) => {
+        // Create a simulated downloadable content for the mock backup
+        const content = `Mock Backup Data for ${backup.name}\nGenerated on: ${new Date().toISOString()}\n\n-- End of Backup --`;
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `backup_${backup.name.replace(/\s+/g, '_').toLowerCase()}_${new Date().toISOString().split('T')[0]}.txt`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    };
+
     const handleCreateBackup = async () => {
         setCreating(true);
         try {
@@ -79,7 +93,7 @@ const Backup = () => {
                                 <tr><td colSpan="6" style={{ textAlign: 'center', padding: '20px' }}>No backups found.</td></tr>
                             ) : (
                                 backups.map((b, i) => (
-                                    <tr key={b._id || i}><td style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{b.name}</td><td>{new Date(b.createdAt).toLocaleString()}</td><td>{b.size}</td><td><span className="badge badge-outline">{b.type}</span></td><td><span className="badge badge-outline">{b.status}</span></td><td><button className="btn btn-ghost btn-sm" onClick={() => alert('Download starting...')}><HiOutlineDownload /> Download</button></td></tr>
+                                    <tr key={b._id || i}><td style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{b.name}</td><td>{new Date(b.createdAt).toLocaleString()}</td><td>{b.size}</td><td><span className="badge badge-outline">{b.type}</span></td><td><span className="badge badge-outline">{b.status}</span></td><td><button className="btn btn-ghost btn-sm" onClick={() => handleDownloadBackup(b)}><HiOutlineDownload /> Download</button></td></tr>
                                 ))
                             )}
                         </tbody>

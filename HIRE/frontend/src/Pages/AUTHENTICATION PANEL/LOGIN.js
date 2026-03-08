@@ -91,13 +91,10 @@ const AuthLogin = () => {
                             <input
                                 className="input-field"
                                 type="email"
-                                placeholder={
-                                    role === 'admin' ? 'nathirvkp@gmail.com' :
-                                        role === 'seeker' ? 'gokulspt40@gmail.com' :
-                                            'nandhiniraja2408@gmail.com'
-                                }
+                                placeholder="Enter your email"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
+                                autoComplete="off"
                                 required
                             />
                         </div>
@@ -107,13 +104,10 @@ const AuthLogin = () => {
                                 <input
                                     className="input-field"
                                     type={showPass ? 'text' : 'password'}
-                                    placeholder={
-                                        role === 'admin' ? 'natsah0608' :
-                                            role === 'seeker' ? 'gokul111' :
-                                                'nandhu123'
-                                    }
+                                    placeholder="Enter your password"
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
+                                    autoComplete="new-password"
                                     required
                                 />
                                 <button type="button" className="toggle-pass" onClick={() => setShowPass(!showPass)}>{showPass ? <HiOutlineEyeOff /> : <HiOutlineEye />}</button>
@@ -127,6 +121,7 @@ const AuthLogin = () => {
                             {loading ? 'Signing in...' : 'Sign In'}
                         </button>
                     </form>
+
                     <div className="auth-divider">or continue with</div>
                     <div className="social-buttons">
                         <button type="button" className="social-btn" onClick={() => handleSocialLogin('Google')} disabled={loading}><FcGoogle /> Google</button>

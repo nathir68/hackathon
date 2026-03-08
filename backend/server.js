@@ -24,6 +24,7 @@ app.use('/api/admin/backups', require('./routes/backupRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
 app.use('/api/activity-logs', require('./routes/activityLogRoutes'));
 app.use('/api/seeker', require('./routes/seekerRoutes'));
+app.use('/api/recruiter', require('./routes/recruiterRoutes'));
 app.use('/api/ai', require('./routes/aiRoutes'));
 app.use('/api/messages', require('./routes/messageRoutes'));
 

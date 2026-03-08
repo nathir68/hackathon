@@ -36,7 +36,7 @@ const ManageJobs = () => {
             setJobs(jobs.filter(j => j._id !== jobId));
         } catch (error) {
             console.error("Failed to delete job:", error);
-            alert("Could not delete job at this time.");
+            alert(error.response?.data?.message || "Could not delete job at this time.");
         }
     };
 
@@ -72,7 +72,7 @@ const ManageJobs = () => {
                                             <div style={{ display: 'flex', gap: '4px' }}>
                                                 <button className="btn-icon" title="View Applications" onClick={() => navigate(`/recruiter/candidates?jobId=${j._id}`)}><HiOutlineEye /></button>
                                                 <button className="btn-icon" title="View Job Page" onClick={() => navigate(`/jobs/${j._id}`)}><HiOutlineSearch /></button>
-                                                <button className="btn-icon" title="Edit" onClick={() => alert("Job editing coming soon.")}><HiOutlinePencil /></button>
+                                                <button className="btn-icon" title="Edit" onClick={() => navigate(`/recruiter/post-job?edit=true&jobId=${j._id}`)}><HiOutlinePencil /></button>
                                                 <button className="btn-icon" title="Pause"><HiOutlinePause /></button>
                                                 <button className="btn-icon" title="Delete" onClick={() => handleDelete(j._id)}><HiOutlineTrash /></button>
                                             </div>

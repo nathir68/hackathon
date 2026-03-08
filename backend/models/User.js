@@ -8,6 +8,9 @@ const UserSchema = new mongoose.Schema(
         role: { type: String, enum: ['admin', 'recruiter', 'seeker'], default: 'seeker' },
         skills: { type: [String], default: [] },
         resume: { type: String, default: null }, // URL or filename of uploaded resume
+        linkedinUrl: { type: String, default: '' },
+        portfolioUrl: { type: String, default: '' },
+        githubUrl: { type: String, default: '' },
     },
     { timestamps: true }
 );

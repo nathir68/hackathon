@@ -41,29 +41,69 @@ const ManageJobSeekers = () => {
     return (
         <DashboardLayout sidebarLinks={adminLinks} userName={user.name} userRole="Administrator">
             <div className="page-wrapper">
-                <div className="page-header"><h1>Manage Job Seekers</h1><p>View and manage all job seeker accounts</p></div>
-                <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
-                    <div className="search-bar" style={{ flex: 1 }}><HiOutlineSearch className="search-icon" /><input placeholder="Search seekers..." /></div>
-                    <div className="tabs">{['All', 'Active', 'Suspended', 'Blocked'].map(t => <button key={t} className={`tab ${filter === t ? 'active' : ''}`} onClick={() => setFilter(t)}>{t}</button>)}</div>
+                <div className="page-header">
+                    <h1>Manage Job Seekers</h1>
+                    <p>View and manage all job seeker accounts</p>
                 </div>
+
+                <div style={{ display: 'flex', gap: '16px', marginBottom: '24px' }}>
+                    <div className="search-bar" style={{ flex: 1 }}>
+                        <HiOutlineSearch className="search-icon" />
+                        <input placeholder="Search seekers..." />
+                    </div>
+
+                    <div className="tabs">
+                        {['All', 'Active', 'Suspended', 'Blocked'].map(t => (
+                            <button
+                                key={t}
+                                className={`tab ${filter === t ? 'active' : ''}`}
+                                onClick={() => setFilter(t)}
+                            >
+                                {t}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
                 <div className="glass-card" style={{ padding: 0, overflow: 'hidden' }}>
                     <table className="data-table">
-                        <thead><tr><th>User</th><th>Email</th><th>Joined</th><th>Applications</th><th>Verified</th><th>Status</th><th>Actions</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>USER</th>
+                                <th>EMAIL</th>
+                                <th>JOINED</th>
+                                <th>APPLICATIONS</th>
+                                <th>VERIFIED</th>
+                                <th>STATUS</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             {loading ? (
-                                <tr><td colSpan="7" style={{ textAlign: 'center', padding: '20px' }}>Loading...</td></tr>
+                                <tr><td colSpan="7" style={{ textAlign: 'center', padding: '40px' }}>Loading...</td></tr>
                             ) : filtered.length === 0 ? (
-                                <tr><td colSpan="7" style={{ textAlign: 'center', padding: '20px' }}>No seekers found.</td></tr>
+                                <tr><td colSpan="7" style={{ textAlign: 'center', padding: '40px' }}>No seekers found.</td></tr>
                             ) : (
                                 filtered.map((s, i) => (
                                     <tr key={s._id || i}>
-                                        <td style={{ fontWeight: 600, color: 'var(--text-primary)' }}><div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><div className="avatar-sm">{s.name?.[0] || '?'}</div>{s.name}</div></td>
+                                        <td style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                                <div className="avatar-sm">{s.name?.[0] || '?'}</div>
+                                                {s.name}
+                                            </div>
+                                        </td>
                                         <td>{s.email}</td>
                                         <td>{new Date(s.createdAt).toLocaleDateString()}</td>
                                         <td>-</td>
                                         <td>✓</td>
                                         <td><span className="badge badge-outline">Active</span></td>
-                                        <td><div style={{ display: 'flex', gap: '4px' }}><button className="btn-icon" title="Delete" onClick={() => handleDelete(s._id)}><HiOutlineTrash /></button></div></td>
+                                        <td>
+                                            <div style={{ display: 'flex', gap: '8px' }}>
+                                                <button className="btn-icon" title="Delete" onClick={() => handleDelete(s._id)}>
+                                                    <HiOutlineTrash />
+                                                </button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 ))
                             )}

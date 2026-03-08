@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DashboardLayout from '../../Components/DashboardLayout';
 import { recruiterLinks } from '../../Components/SidebarLinks';
-import { HiOutlineSearch, HiOutlineDownload, HiOutlineEye, HiOutlineChatAlt2 } from 'react-icons/hi';
+import { HiOutlineSearch, HiOutlineDownload, HiOutlineEye, HiOutlineChatAlt2, HiOutlineDocumentText } from 'react-icons/hi';
 import { getMyJobs, getJobApplications, updateAppStatus, getResume } from '../../../api';
 
 const ViewApplications = () => {

@@ -100,6 +100,7 @@ const Register = () => {
                         <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.875rem', color: 'var(--text-secondary)' }}><input type="checkbox" required /> I agree to the <Link to="#" style={{ color: 'var(--white)', fontWeight: '600' }}>Terms & Conditions</Link></label>
                         <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%' }} disabled={loading}>{loading ? 'Creating...' : 'Create Account'}</button>
                     </form>
+
                     <div className="auth-divider">or sign up with</div>
                     <div className="social-buttons"><button type="button" className="social-btn" onClick={() => handleSocialLogin('Google')} disabled={loading}><FcGoogle /> Google</button><button type="button" className="social-btn" onClick={() => handleSocialLogin('LinkedIn')} disabled={loading}><FaLinkedinIn color="#0A66C2" /> LinkedIn</button></div>
                     <div className="auth-footer">Already have an account? <Link to="/login">Sign In</Link></div>

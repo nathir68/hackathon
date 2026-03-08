@@ -59,10 +59,10 @@ const CandidateRanking = () => {
                 receiverId: candidateId,
                 text: `Hi! Thank you for applying to the ${jobTitle} position. We would like to learn more about your experience.`
             });
-            navigate('/recruiter/chat');
+            navigate('/recruiter/messages');
         } catch (err) {
             console.error('Failed to send message:', err);
-            alert('Could not initiate chat.');
+            alert('Could not initiate chat. Please check your connection.');
         } finally {
             setMessaging(prev => ({ ...prev, [candidateId]: false }));
         }

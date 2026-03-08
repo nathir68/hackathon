@@ -50,6 +50,30 @@ const Reports = () => {
         };
         fetchReports();
     }, []);
+
+    const handleExportCSV = () => {
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += "Metric,Value\n";
+        csvContent += `Total Users,${stats.users}\n`;
+        csvContent += `Jobs Posted,${stats.jobs}\n`;
+        csvContent += `Applications,${stats.applications}\n`;
+        csvContent += `Job Seekers,${userBreakdown.seekers}\n`;
+        csvContent += `Recruiters,${userBreakdown.recruiters}\n`;
+        csvContent += `Admins,${userBreakdown.admins}\n`;
+        csvContent += "Job Categories,Count\n";
+        jobCategories.forEach(([cat, count]) => {
+            csvContent += `${cat},${count}\n`;
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `hire_platform_report_${new Date().toISOString().split('T')[0]}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
         <DashboardLayout sidebarLinks={adminLinks} userName={user.name} userRole="Administrator">
             <div className="page-wrapper">
@@ -116,7 +140,7 @@ const Reports = () => {
                     </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '12px' }}><button className="btn btn-primary" onClick={() => window.print()}>Export PDF Report</button><button className="btn btn-secondary" onClick={() => alert('CSV Export Started.')}>Export CSV Data</button></div>
+                <div style={{ display: 'flex', gap: '12px' }}><button className="btn btn-primary" onClick={() => window.print()}>Export PDF Report</button><button className="btn btn-secondary" onClick={handleExportCSV}>Export CSV Data</button></div>
             </div>
         </DashboardLayout>
     );
